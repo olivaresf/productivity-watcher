@@ -69,13 +69,13 @@ class ViewController: NSViewController {
     
     @IBOutlet weak var labelNow: NSTextField! {
         didSet {
-            labelNow.textColor = NSAppearance.current.isDarkMode ? NSColor.white.withAlphaComponent(0.35) : .lightGray
+            labelNow.textColor = labelNow.isDarkMode ? NSColor.white.withAlphaComponent(0.35) : .lightGray
         }
     }
     @IBOutlet weak var labelTime: NSTextField!
     @IBOutlet weak var labelTimer: NSTextField! {
         didSet {
-            labelTimer.textColor = NSAppearance.current.isDarkMode ? NSColor.white.withAlphaComponent(0.35) : .lightGray
+            labelTimer.textColor = labelTimer.isDarkMode ? NSColor.white.withAlphaComponent(0.35) : .lightGray
         }
     }
     @IBOutlet weak var labelCounter: NSTextField!
@@ -123,7 +123,7 @@ class ViewController: NSViewController {
                                                           name: NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification"),
                                                           object: nil)
         
-        if NSAppearance.current.isDarkMode {
+        if view.isDarkMode {
             view.wantsLayer = true
             view.layer?.backgroundColor = .black
         }
@@ -219,18 +219,18 @@ class ViewController: NSViewController {
 extension ViewController {
     @objc func interfaceModeChanged() {
         
-        view.layer?.backgroundColor = NSAppearance.current.isDarkMode ? .black : .white
+        view.layer?.backgroundColor = view.isDarkMode ? .black : .white
         
         if counterMode {
-            self.labelTime.textColor = NSAppearance.current.isDarkMode ? NSColor.white.withAlphaComponent(0.35) : NSColor.black.withAlphaComponent(0.35)
-            self.labelCounter.textColor = NSAppearance.current.isDarkMode ? .white : NSColor.black
+            labelTime.textColor = labelTime.isDarkMode ? NSColor.white.withAlphaComponent(0.35) : NSColor.black.withAlphaComponent(0.35)
+            labelCounter.textColor = labelCounter.isDarkMode ? .white : NSColor.black
         } else {
-            self.labelTime.textColor = NSAppearance.current.isDarkMode ? .white : .black
-            self.labelCounter.textColor = NSAppearance.current.isDarkMode ? NSColor.white.withAlphaComponent(0.35) : NSColor.black.withAlphaComponent(0.35)
+            labelTime.textColor = labelTime.isDarkMode ? .white : .black
+            labelCounter.textColor = labelCounter.isDarkMode ? NSColor.white.withAlphaComponent(0.35) : NSColor.black.withAlphaComponent(0.35)
         }
         
-        labelNow.textColor = NSAppearance.current.isDarkMode ? NSColor.white.withAlphaComponent(0.35) : .lightGray
-        labelTimer.textColor = NSAppearance.current.isDarkMode ? NSColor.white.withAlphaComponent(0.35) : .lightGray
+        labelNow.textColor = labelNow.isDarkMode ? NSColor.white.withAlphaComponent(0.35) : .lightGray
+        labelTimer.textColor = labelTimer.isDarkMode ? NSColor.white.withAlphaComponent(0.35) : .lightGray
     }
 }
 

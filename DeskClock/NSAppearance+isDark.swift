@@ -1,5 +1,5 @@
 //
-//  NSAppearance+isDark.swift
+//  NSView+isDark.swift
 //  DeskClock
 //
 //  Created by Fernando Olivares on 12/15/20.
@@ -8,20 +8,20 @@
 
 import AppKit
 
-extension NSAppearance {
-  public var isDarkMode: Bool {
-     let isDarkMode: Bool
-
-     if #available(macOS 10.14, *) {
-        if self.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua {
-           isDarkMode = true
-        } else {
-           isDarkMode = false
+extension NSView {
+    var isDarkMode: Bool {
+        if #available(OSX 10.14, *) {
+            return effectiveAppearance.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua
         }
-      } else {
-          isDarkMode = false
-      }
-
-      return isDarkMode
-  }
+        return false
+    }
 }
+//
+//extension NSTextField {
+//    var isDarkMode: Bool {
+//        if #available(OSX 10.14, *) {
+//            return effectiveAppearance.bestMatch(from: [.darkAqua, .aqua]) == .darkAqua
+//        }
+//        return false
+//    }
+//}
