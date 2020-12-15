@@ -12,6 +12,7 @@
 		3EDEFD3F2315E6C400F2AD2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3EDEFD3E2315E6C400F2AD2A /* Assets.xcassets */; };
 		3EDEFD422315E6C400F2AD2A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EDEFD402315E6C400F2AD2A /* Main.storyboard */; };
 		3EE749F924A54C990075A652 /* HotKey in Frameworks */ = {isa = PBXBuildFile; productRef = 3EE749F824A54C990075A652 /* HotKey */; };
+		9B62FF3625889B7400DBD4BF /* NSAppearance+isDark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B62FF3525889B7400DBD4BF /* NSAppearance+isDark.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		3EDEFD3E2315E6C400F2AD2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3EDEFD412315E6C400F2AD2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3EDEFD432315E6C400F2AD2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9B62FF3525889B7400DBD4BF /* NSAppearance+isDark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSAppearance+isDark.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				3EDEFD3A2315E6C300F2AD2A /* AppDelegate.swift */,
 				3EDEFD3C2315E6C300F2AD2A /* ViewController.swift */,
+				9B62FF3525889B7400DBD4BF /* NSAppearance+isDark.swift */,
 				3EDEFD3E2315E6C400F2AD2A /* Assets.xcassets */,
 				3EDEFD402315E6C400F2AD2A /* Main.storyboard */,
 				3EDEFD432315E6C400F2AD2A /* Info.plist */,
@@ -146,6 +149,7 @@
 			files = (
 				3EDEFD3D2315E6C300F2AD2A /* ViewController.swift in Sources */,
 				3EDEFD3B2315E6C300F2AD2A /* AppDelegate.swift in Sources */,
+				9B62FF3625889B7400DBD4BF /* NSAppearance+isDark.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +293,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.huytd.DeskClock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -306,6 +311,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.huytd.DeskClock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
