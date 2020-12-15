@@ -67,7 +67,17 @@ class ViewController: NSViewController {
         }
     }
     
+    @IBOutlet weak var labelNow: NSTextField! {
+        didSet {
+            labelNow.textColor = NSAppearance.current.isDarkMode ? NSColor.white.withAlphaComponent(0.35) : .lightGray
+        }
+    }
     @IBOutlet weak var labelTime: NSTextField!
+    @IBOutlet weak var labelTimer: NSTextField! {
+        didSet {
+            labelTimer.textColor = NSAppearance.current.isDarkMode ? NSColor.white.withAlphaComponent(0.35) : .lightGray
+        }
+    }
     @IBOutlet weak var labelCounter: NSTextField!
     
     func counterToString(counter: Int) -> String {
@@ -107,6 +117,16 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        DistributedNotificationCenter.default.addObserver(self,
+                                                          selector: #selector(interfaceModeChanged),
+                                                          name: NSNotification.Name(rawValue: "AppleInterfaceThemeChangedNotification"),
+                                                          object: nil)
+        
+        if NSAppearance.current.isDarkMode {
+            view.wantsLayer = true
+            view.layer?.backgroundColor = .black
+        }
         
         Timer.scheduledTimer(withTimeInterval: timeCounterInterval, repeats: true) { timer in
             
@@ -169,15 +189,13 @@ class ViewController: NSViewController {
     func switchToClock() {
         counterMode = false
         self.labelCounter.stringValue = counterToString(counter: targetTimeCounter * 60)
-        self.labelTime.textColor = NSColor(red:0.0, green:0.0, blue:0.0, alpha:1.0)
-        self.labelCounter.textColor = NSColor(red:0.0, green:0.0, blue:0.0, alpha:0.35)
+        interfaceModeChanged()
     }
     
     func switchToTimer() {
         counterMode = true
         counter = 60 * self.targetTimeCounter
-        self.labelTime.textColor = NSColor(red:0.0, green:0.0, blue:0.0, alpha:0.35)
-        self.labelCounter.textColor = NSColor(red:0.0, green:0.0, blue:0.0, alpha:1.0)
+        interfaceModeChanged()
     }
     
     override func mouseDown(with event: NSEvent) {
@@ -195,7 +213,24 @@ class ViewController: NSViewController {
         // Update the view, if already loaded.
         }
     }
+}
 
-
+// MARK: - Dark Mode
+extension ViewController {
+    @objc func interfaceModeChanged() {
+        
+        view.layer?.backgroundColor = NSAppearance.current.isDarkMode ? .black : .white
+        
+        if counterMode {
+            self.labelTime.textColor = NSAppearance.current.isDarkMode ? NSColor.white.withAlphaComponent(0.35) : NSColor.black.withAlphaComponent(0.35)
+            self.labelCounter.textColor = NSAppearance.current.isDarkMode ? .white : NSColor.black
+        } else {
+            self.labelTime.textColor = NSAppearance.current.isDarkMode ? .white : .black
+            self.labelCounter.textColor = NSAppearance.current.isDarkMode ? NSColor.white.withAlphaComponent(0.35) : NSColor.black.withAlphaComponent(0.35)
+        }
+        
+        labelNow.textColor = NSAppearance.current.isDarkMode ? NSColor.white.withAlphaComponent(0.35) : .lightGray
+        labelTimer.textColor = NSAppearance.current.isDarkMode ? NSColor.white.withAlphaComponent(0.35) : .lightGray
+    }
 }
 
